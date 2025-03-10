@@ -50,4 +50,25 @@ b. Node manager muốn rời khỏi swarm
 c. Manager node muốn xóa một worker node ra khỏi cụm docker swarm
   Thao tác trên máy manager: sudo docker node rm <tên worker node>
 
+-----------------------------------
+Thay đổi hostname:
+- sudo hostname
+- sudo hostnamectl set-hostname vps0
+- sudo hostname
+Then, shutdown the virtual machine and turn it on again.
+
+Thêm 1 máy với vai trò manager trong cụm:
+- sudo docker node Is
+- sudo docker node promote vps1
+(*) can use ID instead of vps1
+
+Chuyển manager về worker: -> không thể dùng lệnh quản trị swarm 
+Ở giao diện ssh của máy master01 ta gõ:
+- sudo docker node demote vps1
+
+1️⃣ Tại sao ta cần khởi động các service theo thứ tự?
+🔴 Lỗi kết nối do service chưa sẵn sàng.
+🔴 Worker không thể nhận task vì hàng đợi chưa tồn tại.
+2️⃣ Mặc định port khi không khai báo cho Redis và Worker là bao nhiêu?
+👉 Redis mặc định sử dụng port 6379.
 
