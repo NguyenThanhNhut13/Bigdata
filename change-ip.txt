@@ -23,3 +23,31 @@ sudo netplan apply
 
 Kiểm tra ip:
 ip a
+
+### Tại sao không nên dùng mạng NAT để xây dựng cụm Docker Swarm?
+
+Không nên dùng NAT vì nó chặn giao tiếp giữa các node, gây khó khăn cho việc định tuyến và kết nối Docker Swarm.
+✅ Nên dùng Host-Only Network hoặc Bridged Adapter để các node có IP cố định và giao tiếp trực tiếp.
+
+### Giải thích về 2 mã token sinh ra trong Docker Swarm
+docker swarm join --token SWMTKN-1-0n2zlsjr6fmyzhgjbxy188x9omm4mqnki5q0vdxuyjb5wjc6qg-biylg2ugtmqc45qnlq183glbi 192.168.90.101:2377 -> dùng ở máy worker để join vào cụm swarm 
+
+Trong Docker Swarm, khi khởi tạo một cụm Swarm (bằng lệnh docker swarm init), hệ thống sẽ sinh ra 2 loại token:
+  + Manager Token 🔹: Dùng để thêm node manager vào cụm Swarm (có quyền quản lý).
+  + Worker Token 🔹: Dùng để thêm node worker vào cụm Swarm (chỉ thực thi container).
+👉 Mục đích: Xác thực, phân quyền, bảo mật khi thêm node vào Swarm.
+
+---------------------------------------
+- sudo docker info -> hiển thị thông tin chi tiết về Docker trên hệ thống
+- sudo docker node ls -> liệt kê tất cả các node trong cụm Docker Swarm
+- sudo docker swarm join-token worker -> Xem lại token
+
+Một vài câu lệnh quản trị các node trên swarm
+a. Một node worker muốn rời khỏi swarm
+  Thao tác trên máy worker: docker swarm leave
+b. Node manager muốn rời khỏi swarm
+  Thao tác trên máy manager: sudo docker swarm leave--force
+c. Manager node muốn xóa một worker node ra khỏi cụm docker swarm
+  Thao tác trên máy manager: sudo docker node rm <tên worker node>
+
+
