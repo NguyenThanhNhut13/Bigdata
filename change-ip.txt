@@ -1,0 +1,23 @@
+Thiết lập theo dải IP khác video hướng dẫn:
+
+sudo nano /etc/netplan/50-cloud-init.yaml
+
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s3:
+      dhcp4: true
+    enp0s8:
+      addresses:
+        - 192.168.56.101/24
+
+🔥 Lưu ý:
+enp0s3: Dùng DHCP (mạng NAT).
+enp0s8: Đặt IP tĩnh (mạng Host-Only).
+
+Áp dụng thay đổi: 
+sudo netplan apply
+
+Kiểm tra ip:
+ip a
