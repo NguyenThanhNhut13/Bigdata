@@ -1,3 +1,5 @@
+Trên Ubuntu 18.04 trở lên, không dùng /etc/network/interfaces nữa mà sử dụng Netplan để cấu hình mạng.
+
 Thiết lập theo dải IP khác video hướng dẫn:
 
 sudo nano /etc/netplan/50-cloud-init.yaml
