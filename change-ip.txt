@@ -24,6 +24,10 @@ sudo netplan apply
 Kiểm tra ip:
 ip a
 
+--------------------------------------------
+🚀 SwarmKit là gì?
+SwarmKit là một orchestration tool (công cụ điều phối) mã nguồn mở do Docker phát triển, dùng để quản lý cụm container (cluster). Nó giúp bạn triển khai, mở rộng và quản lý các container theo mô hình Swarm (Docker Swarm Mode).
+
 ### Tại sao không nên dùng mạng NAT để xây dựng cụm Docker Swarm?
 
 Không nên dùng NAT vì nó chặn giao tiếp giữa các node, gây khó khăn cho việc định tuyến và kết nối Docker Swarm.
